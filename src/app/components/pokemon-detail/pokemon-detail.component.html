@@ -1,20 +1,20 @@
 <ng-container>
-  <form class="form-register" id=newPokemon #pokemonsForm2="ngForm" (ngSubmit)="addPokemons(pokemonsForm2.value)">
-    <p>Nuevo Pokemon</p>
+  <form class="form-register" id=updatePokemon #pokemonsForm="ngForm" (ngSubmit)="updatePokemons(pokemonsForm.value)">
+    <p>Actualizar Pokemon</p>
     <div *ngIf="message" > {{ message }}</div>
     <div class="flex-container">
-      <div class="flex-child first">
+      <div class="flex-child first" >
         <table>
           <tr>
             <td align="right" class="flex-container2">
               <label class="flex-child2 first" for="name">Nombre: &nbsp; </label>
-              <input class="flex-child2 second" type="text" name="name" id="name" placeholder="Nombre"  ngModel>
+              <input class="flex-child2 second" type="text" name="name" id="name" placeholder="Nombre" value="{{ data.name }}" ngModel required>
             </td>
           </tr>
           <tr>
             <td align="right" class="flex-container2">
               <label class="flex-child2 first" for="image">Imagen: &nbsp; </label>
-              <input class="flex-child2 second" type="text" name="image" id="image" placeholder="url"  ngModel >
+              <input class="flex-child2 second" type="text" name="image" id="image" placeholder="url" value="{{ data.image }}" ngModel required>
             </td>
           </tr>
         </table>
@@ -24,7 +24,7 @@
           <tr>
             <td align="right">
               <label for="attack">Ataque: &nbsp; 0
-               <input style="width: 100px;" id="attack" type="range" min="1" max="100" step="1" name="attack" ngModel > 100
+               <input style="width: 100px;" id="attack" type="number" min="1" max="100" name="attack" value="{{ data.attack }}" ngModel required> 100
               </label>
             </td>
           </tr>
@@ -32,7 +32,7 @@
           <tr>
             <td align="right">
               <label for="defense">Defensa: &nbsp; 0
-                <input style="width: 100px;" id="defense" type="range" min="1" max="100" step="1" name="defense" ngModel > 100</label>
+                <input style="width: 100px;" id="defense" type="number" min="1" max="100" name="defense" value="{{ data.defense }}" ngModel required> 100</label>
             </td>
           </tr>
         </table>
@@ -40,7 +40,7 @@
     </div>
     <div class="padre">
       <button class="botons" type="submit"><i class="fa fa-save"></i> Guardar</button>
-      <button class="botons" type="reset"><i class="fa fa-close"></i> Cancelar </button>
+      <button class="botons" type="button"  [routerLink]="['']"><i class="fa fa-close"></i> Cancelar </button>
     </div>
   </form>
 </ng-container>

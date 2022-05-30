@@ -1,1 +1,54 @@
-<p>pokemon-list works!</p>
+<ng-container>
+  <div class="form-register-index">
+    <h4>Listado Pokemon</h4>
+    <div style="display: flex;">
+      <div class="buttons">
+        <form id=newPokemon #pokemonsForm="ngForm">
+          <input style="font-size:0.875;border-radius: 4px;word-wrap: break-word;width: 200px;max-width: 100%;" #myInput (keyup)="searchPokemon(myInput.value)" type="text"  placeholder="Buscar" name="search" [ngModelOptions]="{standalone: true}" [ngModel]="search">
+          <i class="fa fa-search"></i>
+          </form>
+
+      </div>
+      <button class="botons" type="button"><i class="fa fa-plus"></i> Nuevo</button>
+    </div>
+
+    <div style="font-size:0.875;border-radius: 4px;word-wrap: break-word;width: 100%;max-width: 100%;">
+      <table class="table2" align="center" border="1">
+        <thead align="center">
+          <th>
+            Nombre
+          </th>
+          <th align="center">
+            Imagen
+          </th>
+          <th>
+            Ataque
+          </th>
+          <th>
+            Defensa
+          </th>
+          <th align="center">
+            Acciones
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of data" >
+            <td style="padding-left: 10px;">{{ row.name }}</td>
+            <td align="center" style="padding: 0px; width: 20%;"><img src="{{ row.image }}" width="15%"></td>
+            <td style="padding-left: 10px;">{{ row.attack }}</td>
+            <td style="padding-left: 10px;">{{ row.defense }}</td>
+            <td align="center">
+              <button class="botons2" type="button" [routerLink]="['pokemon-detail', row.id]"><i class="fa fa-edit"></i></button>
+              <button class="botons2" type="button" (click)="delPokemons(row.id)"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        <tr>
+          Anterior - 2 - Siguiente / total ( {{ totalPokemonsData }} )
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-pokemon-add>
+    </app-pokemon-add>
+  </div>
+</ng-container>
